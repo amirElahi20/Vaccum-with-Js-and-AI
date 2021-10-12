@@ -2,7 +2,7 @@ let i = 0;
 let j = 0;
 let reverse = false;
 
-let sizeMarix = window.prompt('وارد');
+let sizeMarix = window.prompt('فضای اتاق را وارد کنید');
 if (sizeMarix == null) {
     sizeMarix = 10;
 } else {
@@ -24,13 +24,13 @@ function reloadPage() {
 async function happy(vacuum) {
     setTimeout(() => {
         vacuum.style.backgroundColor = "rgb(0,180,0)";
-        vacuum.innerHTML = ":-)";
+        vacuum.innerHTML = "✅";
     }, 1000);
 }
 async function move(vacuum, cleaningTimer) {
     setTimeout(() => {
-        vacuum.style.backgroundColor = "#dddddd";
-        vacuum.innerHTML = "...";
+        vacuum.style.backgroundColor = "#c2c";
+        vacuum.innerHTML = "🤖";
         const vacuumRect = vacuum.getBoundingClientRect();
         j = reverse === false ? j + 1 : j - 1;
         if (j === sizeMarix || j === -1) {
@@ -64,7 +64,9 @@ async function initializeCanvas() {
     const startBtn = document.getElementById("start-btn");
     let boxes = null;
     const width = sizeMarix * 34;
+    const height = sizeMarix * 34;
     canvas.style.width = width;
+    canvas.style.height = height;
     for (let i = 0; i < sizeMarix; i++) {
         for (let j = 0; j < sizeMarix; j++) {
             boxes = document.createElement("div");
@@ -77,7 +79,7 @@ async function initializeCanvas() {
     }
     const vacuum = document.createElement("div");
     vacuum.className = "vacuum";
-    vacuum.innerHTML = "...";
+    vacuum.innerHTML = "🤖";
     document.body.appendChild(vacuum);
     startBtn.remove();
     const cleaningTimer = setInterval(async() => {
